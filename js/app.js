@@ -22,7 +22,7 @@
  * Define Global Variables
  *
  */
-
+ const sections = document.querySelectorAll("section");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -31,15 +31,18 @@
 
 // Finds all section elements and adds a list item (with an anchor) to the navbar
 function addListItems(navUl) {
-  const section = document.querySelectorAll("section");
-  section.forEach((e) => {
+  sections.forEach((e) => {
     const listItem = document.createElement("li");
-    listItem.setAttribute("id", 'nav__li');
-    listItem.innerHTML = `<a class="nav__link" href="#${e.id}">${e.getAttribute(
+    listItem.setAttribute("id", `${e.id}__li`);
+    listItem.innerHTML = `<span id=${e.id}__link class="nav__link">${e.getAttribute(
       "data-nav"
     )}</a>`;
 
-    console.log(listItem);
+    //add event listener to list item for a click, and scroll to respective section
+    listItem.addEventListener("click", function () {
+      const section = document.querySelector(`#${e.id}`);
+      section.scrollIntoView(true);
+    }); 
 
     navUl.appendChild(listItem);
   });
@@ -54,7 +57,23 @@ function addListItems(navUl) {
 const navUl = document.querySelector("#navbar__list");
 addListItems(navUl);
 
-// Add class 'active' to section when near top of viewport
+// Add class 'active' to section when it is near top of viewport
+function makeActive() {
+  for (const section of sections) {
+    const box = section.getBoundingClientRect();
+    const navLink = document.querySelector(`#${section.id}__link`);
+
+    if (box.top <= 75 && box.bottom >= 75) {
+      // Apply active state on the current section and the corresponding Nav link.
+      section.classList.add("active");
+      navLink.classList.add("link__active")
+    } else {
+      // Remove active state from other section and corresponding Nav link.
+      section.classList.remove("active");
+      navLink.classList.remove("link__active")
+    }
+  }
+}
 
 // Scroll to anchor ID using scrollTO event
 
@@ -63,7 +82,10 @@ addListItems(navUl);
  * Begin Events
  *
  */
-
+// Make sections active
+document.addEventListener("scroll", function() {
+  makeActive();
+});
 // Build menu
 
 // Scroll to section on link click

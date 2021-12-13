@@ -90,21 +90,19 @@ section {
   transition: ease 0.3s all;
 }
 
-.nav__li {
-  
-}
 .nav__link {
   color: #000;
   margin: 10px;
-  font-size: 1.75em;
+  font-size: 1.25em;
 }
 
-.nav__link:hover {
+.nav__link:hover, .link__active {
     color: #000;
     background-color: #cc1;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Header Styles */
@@ -125,6 +123,14 @@ section {
 
 .page__footer p {
   color: #fff;
+}
+
+/* ---- Active Section ---- */
+.active {
+  color: #cc1;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
 }
 
 /* ---- Theme Rules ---- */
