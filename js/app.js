@@ -39,8 +39,9 @@ function addListItems(navUl) {
     )}</a>`;
 
     //add event listener to list item for a click, and scroll to respective section
-    listItem.addEventListener("click", function () {
+    listItem.addEventListener("click", function (event) {
       const section = document.querySelector(`#${e.id}`);
+      event.preventDefault();
       section.scrollIntoView(true);
     }); 
 
