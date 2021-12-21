@@ -14,20 +14,10 @@
  */
 
 /**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
- */
-
-/**
  * Define Global Variables
  *
  */
  const sections = document.querySelectorAll("section");
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
 
 // Finds all section elements and adds a list item (with an anchor) to the navbar
 function addListItems(navUl) {
@@ -42,17 +32,12 @@ function addListItems(navUl) {
     listItem.addEventListener("click", function (event) {
       const section = document.querySelector(`#${e.id}`);
       event.preventDefault();
-      section.scrollIntoView(true);
+      section.scrollIntoView({behavior: "smooth"});
     }); 
 
     navUl.appendChild(listItem);
   });
 }
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
 
 // build the nav
 const navUl = document.querySelector("#navbar__list");
@@ -64,7 +49,7 @@ function makeActive() {
     const box = section.getBoundingClientRect();
     const navLink = document.querySelector(`#${section.id}__link`);
 
-    if (box.top <= 75 && box.bottom >= 75) {
+    if (box.top <= 150 && box.bottom >= 150) {
       // Apply active state on the current section and the corresponding Nav link.
       section.classList.add("active");
       navLink.classList.add("link__active")
@@ -77,18 +62,8 @@ function makeActive() {
 }
 
 // Scroll to anchor ID using scrollTO event
-
-/**
- * End Main Functions
- * Begin Events
- *
- */
 // Make sections active
 document.addEventListener("scroll", function() {
   makeActive();
 });
-// Build menu
 
-// Scroll to section on link click
-
-// Set sections as active
